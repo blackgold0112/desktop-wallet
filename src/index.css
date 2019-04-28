@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'SF Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/SFPro/SF-Pro-Display-Regular.otf');
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body > #root > div {
+  height: 98vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
