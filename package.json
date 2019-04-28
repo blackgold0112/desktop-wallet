@@ -1,5 +1,5 @@
 {
-  "name": "@summercash/react-summercash",
+  "name": "@summercash/electron-summercash",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
@@ -32,10 +32,7 @@
     "universal-cookie": "^3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
