@@ -46,5 +46,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://localhost:3033"
+  "proxy": "https://localhost:3033",
+  "devDependencies": {
+    "electron": "^5.0.0"
+  }
 }
