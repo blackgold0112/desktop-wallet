@@ -8,6 +8,9 @@ const path = require("path");
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+// Init badge num.
+let badgeNum = 0;
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -47,6 +50,14 @@ function createWindow() {
       });
     }
 
+    if (app.dock && !mainWindow.isFocused()) {
+      // Check can config badge
+      // Check should add badge
+      badgeNum++; // Increment badge number
+
+      app.dock.setBadge(badgeNum.toString()); // Set badge
+    }
+
     notification.show(); // Show notification
   });
 
@@ -56,6 +67,13 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+  });
+
+  // Subscribe to the window focus event. When that happens, hide the badge
+  mainWindow.on("focus", function() {
+    badgeNum = 0; // Set badge
+
+    app.dock.setBadge(""); // Reset badge
   });
 }
 
