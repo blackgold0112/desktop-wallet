@@ -40,8 +40,8 @@ function createWindow() {
     if (tx.payload !== "" && tx.payload !== undefined && tx.payload) {
       // Check has message
       notification = new Notification({
-        title: `Received ${tx.amount} SummerCash from ${tx.sender}`,
-        body: Buffer.from(tx.payload, "base64").toString(), // Set body
+        title: Buffer.from(tx.payload, "base64").toString(), // Set title
+        body: `Received ${tx.amount} SummerCash from ${tx.sender}.`, // Set body
         silent: false // Play noise
       });
     } else {
