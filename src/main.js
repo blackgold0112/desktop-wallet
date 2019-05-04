@@ -1,5 +1,8 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Notification, ipcMain } = require("electron");
+
+// Import path
+const path = require("path");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,7 +14,8 @@ function createWindow() {
     width: 900,
     height: 700,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js") // Set preload
     },
     titleBarStyle: "hiddenInset",
     frame: false,
@@ -23,7 +27,18 @@ function createWindow() {
   mainWindow.loadURL("https://summer.cash");
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools();
+
+  ipcMain.on("new_tx", (event, msg) => {
+    const notification = new Notification({
+      title: "New Transaction",
+      body: `Received ${msg.amount} SummerCash from ${msg.sender}!`
+    });
+
+    notification.show(); // Show notification
+
+    console.log(msg); // Log msg
+  });
 
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {
