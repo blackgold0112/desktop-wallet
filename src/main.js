@@ -34,7 +34,9 @@ function createWindow() {
 
     const notification = new Notification({
       title: "New Transaction",
-      body: `Received ${tx.amount} SummerCash from ${tx.sender}!`
+      body: `Received ${tx.amount} SummerCash from ${tx.sender} with message ${
+        tx.message
+      }!`
     });
 
     notification.show(); // Show notification
