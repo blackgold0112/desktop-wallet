@@ -32,12 +32,20 @@ function createWindow() {
   ipcMain.on("new_tx", (event, msg) => {
     const tx = JSON.parse(msg); // Parse MSG
 
-    const notification = new Notification({
-      title: "New Transaction",
-      body: `Received ${tx.amount} SummerCash from ${tx.sender} with message ${
-        tx.message
-      }!`
-    });
+    let notification; // Init notification buffer
+
+    if (tx.message !== "" && tx.message !== undefined && tx.message) {
+      // Check has message
+      notification = new Notification({
+        title: `Received ${tx.amount} SummerCash from ${tx.sender}`,
+        body: tx.message // Set body
+      });
+    } else {
+      notification = new Notification({
+        title: `New Transaction`,
+        body: `Received ${tx.amount} SummerCash from ${tx.sender}.`
+      });
+    }
 
     notification.show(); // Show notification
   });
