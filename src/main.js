@@ -41,12 +41,14 @@ function createWindow() {
       // Check has message
       notification = new Notification({
         title: `Received ${tx.amount} SummerCash from ${tx.sender}`,
-        body: tx.message // Set body
+        body: tx.message, // Set body
+        silent: false // Play noise
       });
     } else {
       notification = new Notification({
         title: `New Transaction`,
-        body: `Received ${tx.amount} SummerCash from ${tx.sender}.`
+        body: `Received ${tx.amount} SummerCash from ${tx.sender}.`,
+        silent: false // Play noise
       });
     }
 
