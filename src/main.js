@@ -37,11 +37,11 @@ function createWindow() {
 
     let notification; // Init notification buffer
 
-    if (tx.message !== "" && tx.message !== undefined && tx.message) {
+    if (tx.payload !== "" && tx.payload !== undefined && tx.payload) {
       // Check has message
       notification = new Notification({
         title: `Received ${tx.amount} SummerCash from ${tx.sender}`,
-        body: tx.message, // Set body
+        body: atob(tx.payload), // Set body
         silent: false // Play noise
       });
     } else {
