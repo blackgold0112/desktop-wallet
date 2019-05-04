@@ -16,7 +16,7 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL("https://summer.cash/wallet");
+  mainWindow.loadURL("https://summer.cash");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
