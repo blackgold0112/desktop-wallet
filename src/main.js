@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require("electron");
 
+// Get Win title-bar
+const ElectronTitlebarWindows = require("electron-titlebar-windows");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -8,15 +11,20 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 900,
+    height: 700,
     webPreferences: {
       nodeIntegration: true
     },
     titleBarStyle: "hiddenInset",
     frame: false,
-    menu: false
+    menu: false,
+    resizable: false
   });
+
+  const titlebar = new ElectronTitlebarWindows(); // Init title bar
+
+  titlebar.appendTo(document.getElementsByClassName("drag")); // Append to drag
 
   // and load the index.html of the app.
   mainWindow.loadURL("https://summer.cash");
