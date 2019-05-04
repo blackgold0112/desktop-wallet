@@ -12,7 +12,10 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    titleBarStyle: "hiddenInset",
+    frame: false,
+    menu: false
   });
 
   // and load the index.html of the app.
