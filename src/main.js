@@ -30,14 +30,14 @@ function createWindow() {
   // mainWindow.webContents.openDevTools();
 
   ipcMain.on("new_tx", (event, msg) => {
+    const tx = JSON.parse(msg); // Parse MSG
+
     const notification = new Notification({
       title: "New Transaction",
-      body: `Received ${msg.amount} SummerCash from ${msg.sender}!`
+      body: `Received ${tx.amount} SummerCash from ${tx.sender}!`
     });
 
     notification.show(); // Show notification
-
-    console.log(msg); // Log msg
   });
 
   // Emitted when the window is closed.
