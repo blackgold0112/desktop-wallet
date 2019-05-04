@@ -41,7 +41,7 @@ function createWindow() {
       // Check has message
       notification = new Notification({
         title: `Received ${tx.amount} SummerCash from ${tx.sender}`,
-        body: atob(tx.payload), // Set body
+        body: Buffer.from(tx.payload, "base64").toString(), // Set body
         silent: false // Play noise
       });
     } else {
