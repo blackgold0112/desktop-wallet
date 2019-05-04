@@ -75,7 +75,10 @@ function createWindow() {
   mainWindow.on("focus", function() {
     badgeNum = 0; // Set badge
 
-    app.dock.setBadge(""); // Reset badge
+    if (app.dock) {
+      // Check has dock
+      app.dock.setBadge(""); // Reset badge
+    }
   });
 }
 
