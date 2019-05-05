@@ -63,6 +63,8 @@ function createWindow() {
     if (app.dock) {
       // Check has dock
       app.dock.setBadge(""); // Reset badge
+    } else {
+      mainWindow.webContents.send("new_badge_count", null); // Reset badge
     }
   });
 
@@ -92,6 +94,11 @@ function createWindow() {
       badgeNum++; // Increment badge number
 
       app.dock.setBadge(badgeNum.toString()); // Set badge
+    } else if (!app.dock && !mainWindow.isFocused()) {
+      // Check no focus
+      badgeNum++; // Increment badge number
+
+      mainWindow.webContents.send("new_badge_count", badgeNum.toString()); // Set badge
     }
 
     notification.show(); // Show notification
