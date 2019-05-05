@@ -18,7 +18,8 @@ function createWindow() {
     height: 700,
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, "preload.js") // Set preload
+      preload: path.join(__dirname, "preload.js"), // Set preload
+      onload: path.join(__dirname, "onload.js") // Set onload
     },
     titleBarStyle: "hiddenInset",
     frame: false,
@@ -30,7 +31,7 @@ function createWindow() {
   mainWindow.loadURL("https://summer.cash");
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("new_tx", (event, msg) => {
     const tx = JSON.parse(msg); // Parse MSG
