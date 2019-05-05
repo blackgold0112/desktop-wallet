@@ -104,7 +104,12 @@ function createWindow() {
     notification.show(); // Show notification
   });
 
-  tray = new Tray(path.join(__dirname, "images/icon.ico")); // Initialize tray
+  if (process.platform === "win32") {
+    // Check is windows
+    tray = new Tray(path.join(__dirname, "images/icon.ico")); // Initialize tray
+  } else {
+    tray = new Tray(path.join(__dirname, "images/icon.png")); // Initialize tray
+  }
 
   const contextMenu = Menu.buildFromTemplate([
     {
