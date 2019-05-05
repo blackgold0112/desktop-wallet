@@ -22,7 +22,7 @@ let badgeNum = 0;
 let tray = null;
 
 function createWindow() {
-  tray = new Tray(path.join(__dirname, "images/icon.png")); // Initialize tray
+  tray = new Tray(path.join(__dirname, "images/icon.ico")); // Initialize tray
 
   const contextMenu = Menu.buildFromTemplate([
     { label: "Sync In Background", type: "radio", checked: true }
