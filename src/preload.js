@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 
 // init
 function init() {
-  // add global variables to your web page
+  // add global variables to web page
   window.isElectron = true; // Set is electron
   window.ipcRenderer = ipcRenderer; // Set IPC renderer
 }
