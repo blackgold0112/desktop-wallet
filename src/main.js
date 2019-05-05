@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Notification, ipcMain } = require("electron");
+const { app, Tray, BrowserWindow, Notification, ipcMain } = require("electron");
 
 // Import path
 const path = require("path");
@@ -11,7 +11,14 @@ let mainWindow;
 // Init badge num.
 let badgeNum = 0;
 
+// Init tray.
+let tray;
+
 function createWindow() {
+  tray = new Tray(path.join(__dirname, "images/icon.png")); // Initialize tray
+
+  tray.setToolTip("SummerCash Wallet"); // Set tooltip
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 900,
