@@ -9,6 +9,7 @@
     "electron-drag": "^1.2.2",
     "electron-push-receiver": "^2.1.2",
     "electron-titlebar-windows": "^3.0.0",
+    "electron-windows-badge": "^1.0.5",
     "grommet": "^2.6.5",
     "grommet-icons": "^4.2.0",
     "grommet-styles": "^0.2.0",

@@ -11,6 +11,9 @@ const {
 // Import path
 const path = require("path");
 
+// Import windows badge
+const Badge = require("electron-windows-badge");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -22,15 +25,6 @@ let badgeNum = 0;
 let tray = null;
 
 function createWindow() {
-  tray = new Tray(path.join(__dirname, "images/icon.ico")); // Initialize tray
-
-  const contextMenu = Menu.buildFromTemplate([
-    { label: "Sync In Background", type: "radio", checked: true }
-  ]); // Create context menu
-
-  tray.setToolTip("SummerCash Wallet"); // Set tooltip
-  tray.setContextMenu(contextMenu); // Set context menu
-
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 900,
@@ -51,6 +45,24 @@ function createWindow() {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  // Emitted when the window is closed.
+  mainWindow.on("closed", function() {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null;
+  });
+
+  // Subscribe to the window focus event. When that happens, hide the badge
+  mainWindow.on("focus", function() {
+    badgeNum = 0; // Set badge
+
+    if (app.dock) {
+      // Check has dock
+      app.dock.setBadge(""); // Reset badge
+    }
+  });
 
   ipcMain.on("new_tx", (event, msg) => {
     const tx = JSON.parse(msg); // Parse MSG
@@ -83,23 +95,29 @@ function createWindow() {
     notification.show(); // Show notification
   });
 
-  // Emitted when the window is closed.
-  mainWindow.on("closed", function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-  });
+  tray = new Tray(path.join(__dirname, "images/icon.ico")); // Initialize tray
 
-  // Subscribe to the window focus event. When that happens, hide the badge
-  mainWindow.on("focus", function() {
-    badgeNum = 0; // Set badge
-
-    if (app.dock) {
-      // Check has dock
-      app.dock.setBadge(""); // Reset badge
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "SummerCash Wallet",
+      type: "normal",
+      click: function() {
+        mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+      }
     }
-  });
+  ]); // Create context menu
+
+  tray.setToolTip("SummerCash Wallet"); // Set tooltip
+  tray.setContextMenu(contextMenu); // Set context menu
+
+  tray.on("click", function() {
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+  }); // Set tray onclick
+
+  if (!app.dock) {
+    // Check no dock support
+    new Badge(mainWindow, {}); // Create badge
+  }
 }
 
 // This method will be called when Electron has finished
