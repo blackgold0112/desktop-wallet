@@ -1,5 +1,12 @@
 // Modules to control application life and create native browser window
-const { app, Tray, BrowserWindow, Notification, ipcMain } = require("electron");
+const {
+  app,
+  Tray,
+  Menu,
+  BrowserWindow,
+  Notification,
+  ipcMain
+} = require("electron");
 
 // Import path
 const path = require("path");
@@ -12,12 +19,17 @@ let mainWindow;
 let badgeNum = 0;
 
 // Init tray.
-let tray;
+let tray = null;
 
 function createWindow() {
   tray = new Tray(path.join(__dirname, "images/icon.png")); // Initialize tray
 
+  const contextMenu = Menu.buildFromTemplate([
+    { label: "Sync In Background", type: "radio", checked: true }
+  ]); // Create context menu
+
   tray.setToolTip("SummerCash Wallet"); // Set tooltip
+  tray.setContextMenu(contextMenu); // Set context menu
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
