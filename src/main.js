@@ -25,6 +25,8 @@ let badgeNum = 0;
 let tray = null;
 
 function createWindow() {
+  app.setAppUserModelId(process.execPath); // Enable win notifications
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 900,
