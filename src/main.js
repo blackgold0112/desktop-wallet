@@ -1,3 +1,6 @@
+// Import cookies
+import ElectronCookies from "@exponent/electron-cookies";
+
 // Modules to control application life and create native browser window
 const {
   app,
@@ -25,6 +28,8 @@ let badgeNum = 0;
 let tray = null;
 
 function createWindow() {
+  ElectronCookies.enable(); // Enable cookies
+
   app.setAppUserModelId(process.execPath); // Enable win notifications
 
   // Create the browser window.
