@@ -1,5 +1,5 @@
 // Get IPC renderer
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, clipboard } = require("electron");
 
 // init
 function init() {
@@ -11,6 +11,8 @@ function init() {
     // Check is windows
     window.isWindows = true; // Set is windows
   }
+
+  window.navigator.clipboard = clipboard; // Set window clipboard
 }
 
 init(); // Init
