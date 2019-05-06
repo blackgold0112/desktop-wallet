@@ -1,6 +1,3 @@
-// Import cookies
-import ElectronCookies from "@exponent/electron-cookies";
-
 // Modules to control application life and create native browser window
 const {
   app,
@@ -16,6 +13,9 @@ const path = require("path");
 
 // Import windows badge
 const Badge = require("electron-windows-badge");
+
+// Import cookies
+const ElectronCookies = require("@exponent/electron-cookies");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
