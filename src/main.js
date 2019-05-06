@@ -5,7 +5,8 @@ const {
   Menu,
   BrowserWindow,
   Notification,
-  ipcMain
+  ipcMain,
+  session
 } = require("electron");
 
 // Import path
@@ -13,9 +14,6 @@ const path = require("path");
 
 // Import windows badge
 const Badge = require("electron-windows-badge");
-
-// Import cookies
-const ElectronCookies = require("@exponent/electron-cookies");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -28,8 +26,6 @@ let badgeNum = 0;
 let tray = null;
 
 function createWindow() {
-  ElectronCookies.enable(); // Enable cookies
-
   app.setAppUserModelId(process.execPath); // Enable win notifications
 
   // Create the browser window.
@@ -73,7 +69,17 @@ function createWindow() {
     }
   });
 
-  ipcMain.on("new_tx", (event, msg) => {
+  ipcMain.on("sign_in", msg => {
+    const user = JSON.parse(msg); // Parse user
+
+    session.defaultSession.cookies.set({
+      username: user.username,
+      password: user.password,
+      address: user.address
+    }); // Set cookie
+  });
+
+  ipcMain.on("new_tx", msg => {
     const tx = JSON.parse(msg); // Parse MSG
 
     let notification; // Init notification buffer
