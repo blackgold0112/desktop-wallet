@@ -74,7 +74,7 @@ function createWindow() {
 
     session.defaultSession.cookies.set({
       username: user.username,
-      password: user.password,
+      token: user.token,
       address: user.address
     }); // Set cookie
   });
