@@ -49,6 +49,11 @@ function createWindow() {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
+  mainWindow.webContents.send(
+    "cookies_available",
+    session.defaultSession.cookies
+  ); //Set cookies
+
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {
     // Dereference the window object, usually you would store windows
