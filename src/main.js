@@ -75,7 +75,12 @@ function createWindow() {
   });
 
   ipcMain.on("sign_in_req", (event, msg) => {
-    const user = JSON.parse(session.defaultSession.cookies.get("user")); // Parse user details
+    const user = JSON.parse(
+      session.defaultSession.cookies.get({
+        url: "https://summer.cash",
+        name: "user"
+      })
+    ); // Parse user details
 
     event.returnValue = user; // Reply with user details
   });
