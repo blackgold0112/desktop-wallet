@@ -87,15 +87,23 @@ function createWindow() {
   ipcMain.on("sign_in", (event, msg) => {
     const user = JSON.parse(msg); // Parse user
 
-    session.defaultSession.cookies.set({
-      url: "https://summer.cash",
-      name: "user",
-      value: JSON.stringify({
-        username: user.username,
-        token: user.token,
-        address: user.address
-      })
-    }); // Set cookie
+    session.defaultSession.cookies.set(
+      {
+        url: "https://summer.cash",
+        name: "user",
+        value: JSON.stringify({
+          username: user.username,
+          token: user.token,
+          address: user.address
+        })
+      },
+      error => {
+        if (error) {
+          // Check for errors
+          console.error(error); // Log error
+        }
+      }
+    ); // Set cookie
   });
 
   ipcMain.on("new_tx", (event, msg) => {
