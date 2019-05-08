@@ -74,16 +74,15 @@ function createWindow() {
     }
   });
 
-  ipcMain.on("sign_in_req", (event, msg) => {
-    const user = JSON.parse(
-      session.defaultSession.cookies.get({
+  ipcMain.on("sign_in_req", (event, msg) =>
+    session.defaultSession.cookies.get(
+      {
         url: "https://summer.cash",
         name: "user"
-      })
-    ); // Parse user details
-
-    event.returnValue = user; // Reply with user details
-  });
+      },
+      cookieData => (event.returnValue = JSON.parse(cookieData))
+    )
+  );
 
   ipcMain.on("sign_in", (event, msg) => {
     const user = JSON.parse(msg); // Parse user
