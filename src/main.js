@@ -74,17 +74,27 @@ function createWindow() {
     }
   });
 
-  ipcMain.on("sign_in", msg => {
+  ipcMain.on("sign_in_req", (event, msg) => {
+    const user = JSON.parse(session.defaultSession.cookies.get("user")); // Parse user details
+
+    event.returnValue = user; // Reply with user details
+  });
+
+  ipcMain.on("sign_in", (event, msg) => {
     const user = JSON.parse(msg); // Parse user
 
     session.defaultSession.cookies.set({
-      username: user.username,
-      token: user.token,
-      address: user.address
+      url: "https://summer.cash",
+      name: "user",
+      value: JSON.stringify({
+        username: user.username,
+        token: user.token,
+        address: user.address
+      })
     }); // Set cookie
   });
 
-  ipcMain.on("new_tx", msg => {
+  ipcMain.on("new_tx", (event, msg) => {
     const tx = JSON.parse(msg); // Parse MSG
 
     let notification; // Init notification buffer
