@@ -87,14 +87,6 @@ function createWindow() {
   ipcMain.on("sign_in", (event, msg) => {
     const user = JSON.parse(msg); // Parse user
 
-    let expirationDate = new Date(); // Initialize expiration date
-
-    let hour = expirationDate.getHours(); // Get hour
-
-    hour = hour + 365 * 24; // Add 1 year
-
-    expirationDate.setHours(hour); // Set hour
-
     session.defaultSession.cookies.set(
       {
         url: "https://summer.cash",
@@ -104,7 +96,7 @@ function createWindow() {
           token: user.token,
           address: user.address
         }),
-        expirationDate: expirationDate.getTime()
+        expirationDate: Math.floor(new Date().getTime() / 1000) + 1209600
       },
       error => {
         if (error) {
