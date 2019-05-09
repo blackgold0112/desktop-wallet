@@ -85,3 +85,6 @@ yarn-error.log*
 
 # VS Code Prefs
 .vscode/
+
+# production pkg
+dist/
