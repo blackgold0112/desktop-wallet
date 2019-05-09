@@ -46,7 +46,7 @@ function createWindow() {
   mainWindow.loadURL("https://summer.cash");
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.webContents.send(
     "cookies_available",
