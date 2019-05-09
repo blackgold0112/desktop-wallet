@@ -1,7 +1,5 @@
 {
   "name": "@summercash/electron-summercash",
-  "author": "Dowland Aiello",
-  "description": "A desktop SummerCash wallet written in electron.",
   "version": "0.1.0",
   "private": false,
   "main": "src/main.js",
@@ -42,8 +40,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -63,6 +60,9 @@
     "appId": "summercash.electron-summercash",
     "mac": {
       "category": "public.app-category.finance"
+    },
+    "dmg": {
+      "title": "${SummerCash Wallet} ${v0.1.0}"
     }
   }
 }
