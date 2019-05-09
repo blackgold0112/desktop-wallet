@@ -77,9 +77,27 @@ function createWindow() {
   ipcMain.on("sign_in_req", (event, msg) =>
     session.defaultSession.cookies.get(
       {
-        name: "user"
+        name: "user_electron-smc"
       },
-      cookieData => (event.returnValue = JSON.parse(cookieData))
+      (error, cookieData) => {
+        if (error) {
+          // Check for errors
+          event.returnValue = {}; // Empty object
+
+          console.error(error); // Log error
+
+          return; // Return
+        } else if (cookieData.length === 0) {
+          // Check no cookie
+          event.returnValue = {}; // Empty object
+
+          console.error("invalid cookie)"); // Log error
+
+          return; // Return
+        }
+
+        event.returnValue = JSON.parse(cookieData[0].value); // Write cookie
+      }
     )
   );
 
@@ -89,7 +107,7 @@ function createWindow() {
     session.defaultSession.cookies.set(
       {
         url: "https://summer.cash",
-        name: "user",
+        name: "user_electron-smc",
         value: JSON.stringify({
           username: user.username,
           token: user.token,
