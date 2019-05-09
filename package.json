@@ -62,6 +62,7 @@
   },
   "build": {
     "appId": "summercash.electron-summercash",
+    "productName": "SummerCash Wallet",
     "mac": {
       "category": "public.app-category.finance"
     }
