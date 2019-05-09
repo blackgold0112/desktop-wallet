@@ -74,6 +74,22 @@ function createWindow() {
     }
   });
 
+  ipcMain.on("close_window", (event, msg) => {
+    mainWindow.close(); // Close main window
+  });
+
+  ipcMain.on("min_window", (event, msg) => {
+    mainWindow.minimize(); // Minimize window
+  });
+
+  ipcMain.on("max_window", (event, msg) => {
+    mainWindow.maximize(); // Maximize window
+  });
+
+  ipcMain.on("full_window", (event, msg) => {
+    mainWindow.setFullscreen(!mainWindow.isFullscreen()); // Make fullscreen
+  });
+
   ipcMain.on("sign_in_req", (event, msg) =>
     session.defaultSession.cookies.get(
       {
