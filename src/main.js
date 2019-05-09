@@ -106,7 +106,7 @@ function createWindow() {
           // Check no cookie
           event.returnValue = {}; // Empty object
 
-          console.error("invalid cookie)"); // Log error
+          console.error("invalid cookie"); // Log error
 
           return; // Return
         }
