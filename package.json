@@ -65,6 +65,7 @@
     "productName": "SummerCash Wallet",
     "mac": {
       "category": "public.app-category.finance"
-    }
+    },
+    "extends": null
   }
 }
