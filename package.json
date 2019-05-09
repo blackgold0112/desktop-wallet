@@ -44,7 +44,8 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "deploy": "./deploy.sh $npm_package_version"
   },
   "eslintConfig": {
     "extends": "react-app"
