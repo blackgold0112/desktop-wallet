@@ -1,5 +1,9 @@
-v0.1.0
+v0.1.1
 
 # About
 
-The first working release of the electron-summercash wallet.
+The second working release of the electron-summercash wallet.
+
+## Changes
+
+- [x] Auto-Update Support
