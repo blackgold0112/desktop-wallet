@@ -9,6 +9,9 @@ const {
   session
 } = require("electron");
 
+// Import auto updater
+const { autoUpdater } = require("electron-updater");
+
 // Import path
 const path = require("path");
 
@@ -198,6 +201,8 @@ function createWindow() {
   tray.on("click", function() {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
   }); // Set tray onclick
+
+  autoUpdater.checkForUpdatesAndNotify(); // Check for updates
 
   if (!app.dock) {
     // Check no dock support
