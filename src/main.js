@@ -2,7 +2,6 @@
 const {
   app,
   Tray,
-  Menu,
   BrowserWindow,
   Notification,
   ipcMain,
