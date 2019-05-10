@@ -9,6 +9,9 @@ const {
   session
 } = require("electron");
 
+// Import file system
+const fs = require("fs");
+
 // Import auto updater
 const { autoUpdater } = require("electron-updater");
 
@@ -92,54 +95,43 @@ function createWindow() {
     mainWindow.setFullscreen(!mainWindow.isFullscreen()); // Make fullscreen
   });
 
-  ipcMain.on("sign_in_req", (event, msg) =>
-    session.defaultSession.cookies.get(
-      {
-        name: "user_electron-smc"
-      },
-      (error, cookieData) => {
-        if (error) {
-          // Check for errors
-          event.returnValue = {}; // Empty object
+  ipcMain.on(
+    "sign_in_req",
+    (event, msg) =>
+      fs.readFile(
+        path.join(app.getPath("userData"), "cookies.json"),
+        (error, data) => {
+          if (error) {
+            // Check for errors
+            console.error(error); // Log found error
 
-          console.error(error); // Log error
+            event.returnValue = {}; // Empty object
 
-          return; // Return
-        } else if (cookieData.length === 0) {
-          // Check no cookie
-          event.returnValue = {}; // Empty object
+            return; // Stop execution
+          }
 
-          console.error("invalid cookie"); // Log error
-
-          return; // Return
+          event.returnValue = JSON.parse(data); // Write object
         }
-
-        event.returnValue = JSON.parse(cookieData[0].value); // Write cookie
-      }
-    )
+      ) // Read file
   );
 
   ipcMain.on("sign_in", (event, msg) => {
     const user = JSON.parse(msg); // Parse user
 
-    session.defaultSession.cookies.set(
-      {
-        url: "https://summer.cash",
-        name: "user_electron-smc",
-        value: JSON.stringify({
-          username: user.username,
-          token: user.token,
-          address: user.address
-        }),
-        expirationDate: Math.floor(new Date().getTime() / 1000) + 1209600
-      },
+    fs.writeFile(
+      path.join(app.getPath("userData"), "cookies.json"),
+      JSON.stringify({
+        username: user.username,
+        token: user.token,
+        address: user.address
+      }),
       error => {
         if (error) {
           // Check for errors
-          console.error(error); // Log error
+          console.error(error); // Log found error
         }
       }
-    ); // Set cookie
+    ); // Write file to persistent memory
   });
 
   ipcMain.on("new_tx", (event, msg) => {
@@ -185,18 +177,8 @@ function createWindow() {
     tray = new Tray(path.join(__dirname, "images/icon.png")); // Initialize tray
   }
 
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: "SummerCash Wallet",
-      type: "normal",
-      click: function() {
-        mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
-      }
-    }
-  ]); // Create context menu
-
+  tray.setHighlightMode("selection"); // Set highlight mode
   tray.setToolTip("SummerCash Wallet"); // Set tooltip
-  tray.setContextMenu(contextMenu); // Set context menu
 
   tray.on("click", function() {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
