@@ -1,5 +1,5 @@
 // Get IPC renderer
-const { ipcRenderer, clipboard } = require("electron");
+const { ipcRenderer, clipboard, remote } = require("electron");
 
 // init
 function init() {
@@ -13,6 +13,7 @@ function init() {
   }
 
   window.navigator.clipboard = clipboard; // Set window clipboard
+  window.remote = remote; // Set window remote
 }
 
 init(); // Init
