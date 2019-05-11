@@ -171,9 +171,9 @@ function createWindow() {
 
   if (process.platform === "win32") {
     // Check is windows
-    tray = new Tray(path.join(__dirname, "images/tray.ico")); // Initialize tray
+    tray = new Tray(path.join(__dirname, "images/tray/tray.ico")); // Initialize tray
   } else {
-    tray = new Tray(path.join(__dirname, "images/tray.png")); // Initialize tray
+    tray = new Tray(path.join(__dirname, "images/tray/tray.png")); // Initialize tray
   }
 
   tray.setHighlightMode("selection"); // Set highlight mode
