@@ -101,6 +101,10 @@ function createWindow() {
     mainWindow.maximize(); // Maximize window
   });
 
+  ipcMain.on("res_window", (event, msg) => {
+    mainWindow.restore(); // Restore window
+  });
+
   ipcMain.on("full_window", (event, msg) => {
     mainWindow.setFullscreen(!mainWindow.isFullscreen()); // Make fullscreen
   });
