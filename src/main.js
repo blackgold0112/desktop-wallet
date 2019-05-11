@@ -100,7 +100,16 @@ function createWindow() {
   ipcMain.on("max_window", (event, msg) => {
     mainWindow.setResizable(true); // Make resizable
 
-    mainWindow.maximize(); // Maximize window
+    switch (mainWindow.isMaximized()) {
+      case true:
+        mainWindow.unmaximize(); // Restore
+
+        break;
+      default:
+        mainWindow.maximize(); // Maximize
+
+        break;
+    }
 
     mainWindow.setResizable(false); // Make normal
   });
