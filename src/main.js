@@ -30,8 +30,18 @@ let badgeNum = 0;
 // Init tray.
 let tray = null;
 
+// App icon.
+let iconPath = null;
+
 function createWindow() {
   app.setAppUserModelId(process.execPath); // Enable win notifications
+
+  if (process.platform === "win32") {
+    // Check is windows
+    iconPath = path.join(__dirname, "images/icon/icon.ico"); // Set icon path
+  } else {
+    iconPath = path.join(__dirname, "images/icon/64x64.png"); // Set icon path
+  }
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -45,7 +55,7 @@ function createWindow() {
     frame: false,
     menu: false,
     resizable: false,
-    icon: path.join(__dirname, "images/icon/64x64.png")
+    icon: iconPath
   });
 
   // and load the index.html of the app.
