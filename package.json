@@ -3,7 +3,7 @@
   "author": "Dowland Aiello",
   "description": "A desktop SummerCash wallet written in electron.",
   "license": "LGPL-3.0",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "main": "src/main.js",
   "dependencies": {
