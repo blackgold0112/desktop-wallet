@@ -85,3 +85,7 @@ yarn-error.log*
 
 # production pkg
 dist/
+
+# keys
+*.p12
+*.pem
