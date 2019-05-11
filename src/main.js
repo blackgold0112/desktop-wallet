@@ -44,7 +44,8 @@ function createWindow() {
     titleBarStyle: "hiddenInset",
     frame: false,
     menu: false,
-    resizable: false
+    resizable: false,
+    icon: path.join(__dirname, "images/icon/64x64.png")
   });
 
   // and load the index.html of the app.
