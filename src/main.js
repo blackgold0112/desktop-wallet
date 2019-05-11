@@ -98,11 +98,19 @@ function createWindow() {
   });
 
   ipcMain.on("max_window", (event, msg) => {
+    mainWindow.setResizable(true); // Make resizable
+
     mainWindow.maximize(); // Maximize window
+
+    mainWindow.setResizable(false); // Make normal
   });
 
   ipcMain.on("res_window", (event, msg) => {
+    mainWindow.setResizable(true); // Make resizable
+
     mainWindow.restore(); // Restore window
+
+    mainWindow.setResizable(false); // Make normal
   });
 
   ipcMain.on("full_window", (event, msg) => {
