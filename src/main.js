@@ -33,6 +33,9 @@ let tray = null;
 // App icon.
 let iconPath = null;
 
+// Is not maximized.
+let isMaximized = false;
+
 function createWindow() {
   app.setAppUserModelId(process.execPath); // Enable win notifications
 
@@ -100,13 +103,17 @@ function createWindow() {
   ipcMain.on("max_window", (event, msg) => {
     mainWindow.setResizable(true); // Make resizable
 
-    switch (mainWindow.isMaximized()) {
+    switch (isMaximized) {
       case true:
         mainWindow.unmaximize(); // Restore
+
+        isMaximized = false; // Is not maximized
 
         break;
       default:
         mainWindow.maximize(); // Maximize
+
+        isMaximized = true; // Is maximized
 
         break;
     }
