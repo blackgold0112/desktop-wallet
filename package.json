@@ -69,5 +69,8 @@
       "category": "public.app-category.finance"
     },
     "extends": null
+  },
+  "peerDependencies": {
+    "typescript": "^3.4.5"
   }
 }
