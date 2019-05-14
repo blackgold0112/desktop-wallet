@@ -26,4 +26,4 @@ export CSC_KEY_PASSWORD=$answer
 echo "... Exported ENV variables."
 
 # Now run the build process.
-cd $PROJECT_PATH; npm run dist;
+cd $PROJECT_PATH; yarn run dist;
