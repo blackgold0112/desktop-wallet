@@ -7,9 +7,9 @@ if [ ! -f $CERT_PATH ]; then
 fi
 
 # Check that the folder for the penguin project is still in the right place
-PROJECT_PATH=~/Projects/penguin
+PROJECT_PATH=$(pwd)
 if [ ! -f $PROJECT_PATH/package.json ]; then
-  echo "Can't find the penguin project! Quitting."; exit 1;
+  echo "Can't find the project! Quitting."; exit 1;
 fi
 
 # Get the user's password.
