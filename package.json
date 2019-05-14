@@ -66,7 +66,14 @@
     "productName": "SummerCash Wallet",
     "mac": {
       "category": "public.app-category.finance",
-      "entitlements": "build/entitlements.mac.plist"
+      "target": [
+        "pkg",
+        "dmg",
+        "zip",
+        "mas"
+      ],
+      "entitlements": "build/entitlements.mac.plist",
+      "type": "distribution"
     },
     "extends": null,
     "mas": {
