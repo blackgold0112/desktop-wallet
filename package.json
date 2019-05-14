@@ -65,9 +65,15 @@
     "appId": "com.summercash.summercashwalletmacos",
     "productName": "SummerCash Wallet",
     "mac": {
-      "category": "public.app-category.finance"
+      "category": "public.app-category.finance",
+      "entitlements": "build/entitlements.mac.plist"
     },
-    "extends": null
+    "extends": null,
+    "mas": {
+      "entitlements": "build/entitlements.mas.plist",
+      "type": "distribution",
+      "category": "public.app-category.finance"
+    }
   },
   "peerDependencies": {
     "typescript": "^3.4.5"
