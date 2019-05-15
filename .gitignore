@@ -89,4 +89,4 @@ dist/
 # keys
 *.p12
 *.pem
-.provisionprofile
+*.provisionprofile
