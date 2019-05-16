@@ -62,31 +62,7 @@
     "electron": "^5.0.1",
     "electron-builder": "^20.40.2"
   },
-  "build": {
-    "appId": "com.summercash.summercashwalletmacos",
-    "productName": "SummerCash Wallet",
-    "mac": {
-      "category": "public.app-category.finance",
-      "target": [
-        "pkg",
-        "dmg",
-        "zip",
-        "mas"
-      ],
-      "entitlements": "build/entitlements.mac.plist",
-      "type": "distribution"
-    },
-    "extends": null,
-    "mas": {
-      "entitlements": "build/entitlements.mas.plist",
-      "type": "distribution",
-      "category": "public.app-category.finance"
-    }
-  },
   "peerDependencies": {
     "typescript": "^3.4.5"
-  },
-  "files": [
-    "embedded.provisionprofile"
-  ]
+  }
 }

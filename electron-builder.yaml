@@ -1,0 +1,20 @@
+directories:
+  output: dist
+appId: com.summercash.summercashwalletmacos
+productName: SummerCash Wallet
+files:
+  - embedded.provisionprofile
+mac:
+  category: public.app-category.finance
+  entitlements: build/entitlements.mac.plist
+  icon: build/icon.icns
+  target:
+    - pkg
+    - dmg
+    - zip
+    - mas
+mas:
+  type: distribution
+  category: public.app-category.finance
+  entitlements: build/entitlements.mas.plist
+  icon: build/icon.icns
