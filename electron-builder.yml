@@ -4,6 +4,8 @@ appId: com.summercash.summercashwalletmacos
 productName: SummerCash Wallet
 files:
   - embedded.provisionprofile
+  - src/*
+  - src/images/**/*
 mac:
   category: public.app-category.finance
   entitlements: build/entitlements.mac.plist
