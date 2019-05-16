@@ -18,3 +18,4 @@ mas:
   category: public.app-category.finance
   entitlements: build/entitlements.mas.plist
   icon: build/icon.icns
+extends: null
