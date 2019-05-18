@@ -38,6 +38,7 @@ let isMaximized = false;
 
 function createWindow() {
   app.setAppUserModelId(process.execPath); // Enable win notifications
+  app.setName("SummerCash Wallet"); // Set name
 
   if (process.platform === "win32") {
     // Check is windows
