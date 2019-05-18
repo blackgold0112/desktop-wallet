@@ -1,5 +1,6 @@
 {
   "name": "@summercash/electron-summercash",
+  "productName": "SummerCash Wallet",
   "author": "Dowland Aiello",
   "description": "A desktop SummerCash wallet written in electron.",
   "license": "LGPL-3.0",
