@@ -1,7 +1,7 @@
 directories:
   output: dist
-appId: com.summercash.summercashwalletmacos
-productName: SummerCash Wallet
+appId: "com.summercash.summercashwalletmacos"
+productName: "SummerCash Wallet"
 files:
   - embedded.provisionprofile
   - src/*
